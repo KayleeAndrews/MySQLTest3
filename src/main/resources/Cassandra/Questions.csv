@@ -1,0 +1,101 @@
+answerType,difficulty,answer,choices,question,question_uuid
+1,2,TRUE,,"Tiger Woods is a professional golfer.",006b4f45-2f99-44fa-b404-d091b06346ce
+0,4,1865,[1863:1864:1865:1866],"What year did the American Civil War end?",0338fbe2-0d14-46c3-bdbb-ff29d0135463
+0,4,"Pittsburgh Steelers","[Dallas Cowboys:San Francisco 49ers:Pittsburgh Steelers:New England Patriots]","Which NFL team has won the most Super Bowls?",0402e103-b6a0-4ddb-98a4-78ccd418e8b3
+0,3,23,[20:21:22:23],"How many Grand Slam singles titles has Serena Williams won?",0701e7b6-c1b4-4812-9a0f-282543051359
+0,1,LAN,[WAN:LAN:MAN:PAN],"What type of network is used to connect devices within a home or office?",090effbc-e8d4-4100-931e-d4abd4633b23
+2,2,Florida,,"Which state is known as the 'Sunshine State'?",094b8f5a-232e-4f76-85f3-438927b7aafb
+2,4,Sacramento,,"What is the capital of California?",0c2560ab-7883-46fd-9fcb-250fb2e68b27
+0,4,"Civil War","[Revolutionary War:Civil War:War of 1812:Mexican-American War]","Which war was fought between the North and South regions in the United States?",0cdc008c-453b-4d52-b70a-6a98847f2316
+0,3,"To route data packets","[To store data:To route data packets:To process requests:To secure connections]","What is the main function of a router?",0e14bcfe-3bde-40d6-b0ab-a8feb06b78a7
+1,5,[4:5:6:7],"How many players are there on a basketball team on the court at one time?",10b7eb88-2cda-4d21-97b6-46fea39614b2
+1,1,FALSE,,"Cricket is the national sport of the United States.",174f152a-b49b-4ee3-ab4c-4434339e89c2
+1,1,TRUE,,"The Bill of Rights is the first ten amendments to the U.S. Constitution.",1808be20-3a6b-4562-a030-2591de3cf740
+0,4,Slavery,"[Taxation:Territorial Expansion:Slavery:Trade Disputes]","What was the main cause of the American Civil War?",19473eae-6d5d-45bf-960d-9f3df54b3538
+0,4,HTTPS,[HTTP:FTP:SSH:HTTPS],"Which protocol is used for secure communication over a computer network?",1abec21c-cb87-4759-bc40-144462c6bf8b
+0,4,"Jack Nicklaus","[Arnold Palmer:Tiger Woods:Jack Nicklaus:Gary Player]","Which golfer is nicknamed 'The Golden Bear'?",1cde76b6-a10f-4aa8-87fe-1b064cb1a2e8
+0,5,"George Washington","[George Washington:Thomas Jefferson:John Adams:James Madison]","Who was the first President of the United States?",1e374cdf-7f16-4378-935b-6fc93b7be653
+0,2,"To explore the Louisiana Territory","[To establish trade routes:To explore the Louisiana Territory:To find gold:To create new maps]","What was the primary purpose of the Lewis and Clark Expedition?",29558295-b6c8-4e4e-9c03-e8f8162c57d1
+2,4,Idaho,,"Which state is known for its potatoes?",2992ac81-c9b6-460b-b2a1-8d6f077fb4f7
+0,3,"Network Address Translation","[Network Access Transmission:Network Address Translation:Network Allocation Table:Node Allocation Technology]","What does 'NAT' stand for in networking?",2c2108e2-4334-4740-9c29-48ce831176bb
+0,5,Repeater,[Router:Switch:Repeater:Modem],"Which device is used to amplify signals in a network?",2d5227e8-2974-456d-a688-cf0f4ae5b583
+0,5,"George Washington","[George Washington:Thomas Jefferson:Alexander Hamilton:John Adams]","Who was the commander of the Continental Army during the American Revolutionary War?",2e11b0b4-62a4-4b7d-ac56-7c52e7a45bb1
+0,5,Delaware,"[New York:Pennsylvania:Delaware:Virginia]","Which U.S. state was the first to ratify the Constitution?",314bd121-cbb5-4c09-9dc0-a7abf2b8ec5e
+0,1,300,[200:250:300:350],"What is the maximum score in 10-pin bowling?",31824b21-e578-47b4-a461-018307f470b4
+1,5,TRUE,,"The FIFA World Cup is held every four years.",352ffecc-279d-49a2-b2fa-f7526194ef94
+2,4,Portuguese,,"What is the official language of Brazil?",35fe1655-d827-4fe8-983a-316b184566a0
+1,1,FALSE,,"The Vice President is also the Speaker of the House.",38ed4226-440b-4c63-9c72-5900561cb6eb
+0,5,"Jefferson Davis","[Robert E. Lee:Ulysses S. Grant:Jefferson Davis:Abraham Lincoln]","Who was the leader of the Confederate States during the American Civil War?",419dfded-c9ea-4ddf-b47f-c65e3052d8dd
+0,2,Transport,"[Physical:Data Link:Transport:Network]","Which layer of the OSI model handles error correction?",433bdfcb-dd06-4582-b51e-03814390a994
+0,3,"Wireless Fidelity","[Wireless Functionality:Wireless Fidelity:Wired Fidelity:Wide Fidelity]","What does 'WiFi' stand for?",43499c18-e052-4869-8d4d-d8e393ae476e
+0,4,255.255.255.0,[255.0.0.0:255.255.0.0:255.255.255.0:255.255.255.255],"What is the default subnet mask for a Class C IP address?",490e45fd-7e66-4f20-972a-c38905defdae
+1,3,TRUE,,"Muhammad Ali was a famous professional boxer.",4ae4ff75-4600-42f9-8b77-bf5d25a7531d
+2,4,Nepal,,"Mount Everest is located in which country?",4db8e432-6d4e-4671-b72f-f43af988eb5a
+1,4,TRUE,,"The United States Constitution was written in 1787.",50e72ea9-8bb0-4a5f-bf09-18402ec1d895
+2,2,Paris,,"What is the capital of France?",518039d5-400d-43fa-9285-97bb81359a0c
+0,4,1776,[1775:1776:1781:1783],"In what year did the United States declare independence?",51a92bc3-cf95-47d2-902b-e3fd9c14e90b
+0,5,5,[3:4:5:6],"How many sets are there in a tennis match in men's Grand Slam tournaments?",51ab23f9-5f61-4033-8263-0068bb84c6be
+0,5,"Significant event of 1880","[Significant event of 1880:Another event of 1880:Random event of 1880:Unrelated event of 1880]","What significant event in American history happened in the year 1880?",526d9b6d-7faa-4555-9b1c-5b1f5aac5fcc
+1,4,TRUE,,"The President has the power to veto laws passed by Congress.",54f8ea68-fe0a-4f27-af3d-9bf11f14f32c
+0,2,"United States","[Russia:China:United States:Germany]","Which country has won the most Olympic gold medals in history?",5613f7c3-88af-43f7-a839-5b631c44589e
+0,3,"Sunil Gavaskar","[Sachin Tendulkar:Sunil Gavaskar:Ricky Ponting:Brian Lara]","Who was the first cricketer to score 10,000 runs in Test cricket?",5a22c29b-bbfa-4d0e-a5b1-8b782b8cb301
+0,3,IPv6,[IPv4:IPv6:IPX:AppleTalk],"What type of IP address is 2001:0db8:85a3:0000:0000:8a2e:0370:7334?",5bd444b1-dd58-4c90-97c1-99efbd859818
+1,5,FALSE,,"The House of Representatives has 438 voting members.",5c754525-76e2-4d87-a919-a824c3acfc73
+1,1,FALSE,,"The Super Bowl is the championship game of the NBA.",5cceee5e-f501-4b3b-b560-109055bc2158
+0,3,FTP,[FTP:HTTP:SMTP:TCP],"Which protocol is used to transfer files over the internet?",60d9bc94-ce52-4bbc-8c9f-cca32a36d8fd
+0,1,"United States","[Germany:United States:Brazil:Japan]","Which country has won the most FIFA Women's World Cup titles?",661567ff-7149-471d-a2df-6aa9b176f86a
+0,5,Basketball,[Basketball:Volleyball:Tennis:Baseball],"In which sport would you perform a slam dunk?",672df136-ea85-4f67-9de1-a64ec0770295
+2,1,Pacific,,"Which ocean is the largest by area?",68b9b911-3adf-4552-8814-a188625a17ee
+2,1,Hawaii,,"Which state has the nickname 'The Aloha State'?",6905e501-a11e-4b64-81b3-30d1e9002e92
+1,1,TRUE,,"The Tour de France is a cycling race.",6cfd210d-2e66-43a7-97b6-81b5ff84b582
+0,2,Uruguay,[Argentina:Uruguay:Brazil:Italy],"Which country won the first ever FIFA World Cup in 1930?",6d0e12d0-95ea-41aa-8147-c1e5f31ef15b
+0,5,England,"[Australia:New Zealand:England:India]","Which country won the Cricket World Cup in 2019?",715ec4e8-9651-40ac-bdb6-286687a4c191
+2,4,Alaska,,"What is the largest state in the United States by area?",72d0a853-b90c-4fc4-87fd-86301a491ce1
+2,1,"New York",,"Which state is known as the 'Empire State'?",74ef732b-5daf-47c8-a48a-a02716511db7
+0,3,"100 meters","[10 meters:100 meters:500 meters:1000 meters]","What is the maximum length of a CAT5 cable segment?",78bb0579-f3a9-4045-813d-4298d0531278
+2,4,Austin,,"What is the capital of Texas?",7a030839-104a-42fd-9bb6-a32da8a8d39e
+2,3,Vatican,,"What is the smallest country in the world by area?",7b6d2fe9-851b-4516-a1a2-60e41f8af50f
+0,4,"Stanley Cup","[Grey Cup:Stanley Cup:World Cup:Super Bowl Trophy]","What is the name of the trophy awarded to the NHL champions?",7d0865de-17ee-4950-ae4a-2c9da3835770
+0,4,"Data Link","[Physical:Data Link:Network:Transport]","What layer of the OSI model does a switch operate at?",7ea9366c-8780-469c-b6ed-1bb757cc072e
+1,3,FALSE,,"The Olympic Games are held every five years.",83e64621-9b48-4390-aa36-ca3879772a4f
+0,1,Mayflower,"[Santa Maria:Mayflower:Pinta:Discovery]","What was the name of the ship the Pilgrims traveled on to America in 1620?",88a02867-a7c7-4887-bcea-c848e5201e84
+0,3,"Marbury v. Madison","[Marbury v. Madison:McCulloch v. Maryland:Dred Scott v. Sandford:Plessy v. Ferguson]","Which landmark Supreme Court case established judicial review?",8ca90f08-9070-4c6f-a5d3-810de236526c
+2,3,Japan,,"Which country is known as the Land of the Rising Sun?",966a63fd-7ec6-40c6-99f2-794e12f5679d
+0,1,"Manhattan Project","[Trinity Project:Manhattan Project:Atomic Initiative:Nuclear Program]","What was the name of the U.S. project to develop an atomic bomb during World War II?",96cbc462-2cbd-49ca-a6cb-579d50954985
+1,2,TRUE,,"Roger Federer has won more than 20 Grand Slam titles.",986cd811-5575-4c6a-bc50-f2aeec3c6470
+2,4,China,,"Which country has the largest population in the world?",9bf270d4-f3a7-4cee-9520-4dde87350fa4
+0,2,2003,[2000:2001:2002:2003],"In which year did Roger Federer win his first Wimbledon title?",9fd61392-78ed-4ee3-a9ab-5d123c685c00
+0,5,192.168.1.1,[8.8.8.8:192.168.1.1:172.64.2.1:203.0.113.1],"Which of the following is a private IP address?",9fd867b5-301f-4bd6-a59a-47f702007f46
+0,5,1917,[1914:1916:1917:1918],"What year did the United States enter World War I?",a199b57c-ad95-4786-a294-f447a131e324
+0,1,Star,[Bus:Ring:Star:Mesh],"Which network topology has a central device to which all others connect?",a74d7052-f808-426f-99f0-5a2ad14cfbf8
+1,2,TRUE,,"The U.S. Congress is made up of the Senate and the House of Representatives.",a77149a0-0845-4f53-b099-766aca175fb4
+2,3,Africa,,"Which continent is the Sahara Desert located on?",a7eeb2bd-290b-4e9a-9571-4ce0eb4a5bf2
+0,3,"Thomas Jefferson","[George Washington:John Adams:Thomas Jefferson:James Madison]","Who was the president during the Louisiana Purchase?",ac4f6544-7925-4b80-bb36-6f705d369f98
+0,5,80,[20:25:80:443],"Which port is used by HTTP?",b016b5b0-af84-4e84-8a5f-0009806f4a63
+0,4,"Internet Protocol","[Internal Protocol:Internet Protocol:Interconnected Protocol:Interface Protocol]","What does 'IP' stand for?",b3cccc79-066e-4821-9560-cd8593df0ec7
+0,1,France,[Spain:Italy:France:Germany],"Which country hosts the annual Tour de France cycling race?",b5e3dfab-1182-4468-a8c7-549e730e48c0
+1,5,FALSE,,"Basketball was invented in Canada.",bbbaaf4e-540a-4041-b92d-f405fdbb2043
+0,4,"To identify a device on a network","[To encrypt data:To route packets:To identify a device on a network:To monitor traffic]","What is the purpose of a MAC address?",bbd31f2c-8752-45d7-b1d4-1d85fd0c200a
+1,2,TRUE,,"The Stanley Cup is awarded in the sport of ice hockey.",bf32e901-2bbc-41d4-91bf-0b64f2ecbd79
+2,5,"Rhode Island",,"What is the smallest state in the United States by area?",c0cf7a9e-4f25-4cb6-b0d9-b6676b5f4af4
+0,4,90,[80:85:90:95],"How many minutes are played in a standard football match?",c14cb9c3-47c7-43c3-ab1f-75513ef7534d
+0,3,"Thomas Jefferson","[George Washington:Thomas Jefferson:John Adams:Benjamin Franklin]","Who was the author of the Declaration of Independence?",c37345b3-5ce1-46ad-8411-2e25efd3cc8d
+2,3,Springfield,,"What is the capital of Illinois?",c4ad5824-f662-4304-a45f-405b7771e485
+0,3,147,[147:155:167:170],"What is the highest possible break in snooker?",c5b329fb-6f96-4c77-bcf2-4c74138a83f7
+2,3,Nile,,"What is the longest river in the world?",cd3f4467-0fad-4255-9ff2-be3b4ff7488a
+1,3,TRUE,,"The United States Senate has 100 members.",d12e3cde-cdf4-4ba5-beef-488d00e65109
+0,1,"13th Amendment","[10th Amendment:12th Amendment:13th Amendment:15th Amendment]","Which amendment abolished slavery in the United States?",d3298544-f71b-4b19-a32b-ab3e134a905b
+0,4,"Barry Bonds","[Babe Ruth:Hank Aaron:Barry Bonds:Alex Rodriguez]","Who holds the record for the most home runs in a single MLB season?",d4def925-531a-4f07-aa2c-d1dc11ed9a65
+0,2,"Franklin D. Roosevelt","[Herbert Hoover:Franklin D. Roosevelt:Harry S. Truman:Dwight D. Eisenhower]","Who was President during the Great Depression and World War II?",d6fd2070-ccaf-45d2-82c4-e135c41775b9
+0,5,"To assign IP addresses","[To route packets:To assign IP addresses:To encrypt data:To store files]","What is the role of a DHCP server?",d8a19b9b-08cd-4f75-90a0-3204fee0da04
+0,2,1788,[1787:1788:1791:1800],"What year was the Constitution of the United States ratified?",dcbd0441-6fd9-4cfe-8e96-fca1246e1872
+1,4,TRUE,,"The Supreme Court is the highest court in the United States.",dee710a9-084e-44e7-888d-401eb19b433e
+1,1,FALSE,,"The U.S. government made a significant decision in the year 1945.",dfdc66c5-0c81-413e-9dd9-674bf15f2848
+0,2,"Alexander Hamilton","[James Madison:Alexander Hamilton:John Jay:George Washington]","Who was the main author of the Federalist Papers?",e17c5379-1ff4-43c5-80f8-ea704d255280
+1,5,FALSE,,"The President can serve an unlimited number of terms.",e2a5ca84-747f-4216-b7b8-04bee4e2134f
+0,1,"To filter network traffic","[To store data:To filter network traffic:To enhance speed:To connect devices]","What is the primary purpose of a firewall?",e887c31b-6e54-4f71-94cb-f99446510c61
+1,2,TRUE,,"The President of the United States serves a four-year term.",ed042316-9165-4e56-a6da-d9b3d29464cf
+0,2,"Muhammad Ali","[Mike Tyson:Floyd Mayweather:Muhammad Ali:George Foreman]","Which boxer was known as 'The Greatest' and 'The People's Champion'?",f25859a2-84fb-4e32-a462-d3253aea8fb4
+2,2,Georgia,,"Which state is known as the 'Peach State'?",f696e6eb-9fed-4942-973f-31608db2be83
+0,4,"Abraham Lincoln","[George Washington:Abraham Lincoln:Ulysses S. Grant:Andrew Johnson]","Who gave the Gettysburg Address?",fb549708-aec2-4969-8e49-1b86078692fc
+0,3,"Local Area Network","[Large Area Network:Local Area Network:Logical Area Network:Limited Area Network]","What does 'LAN' stand for?",fb6196e0-d4a9-46fd-9098-9e14a094c16d
