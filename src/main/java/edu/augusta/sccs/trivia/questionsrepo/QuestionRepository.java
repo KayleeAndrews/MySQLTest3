@@ -1,4 +1,4 @@
-package edu.augusta.sccs.trivia.cassandra;
+package edu.augusta.sccs.trivia.questionsrepo;
 
 import com.datastax.oss.driver.api.core.CqlIdentifier;
 import com.datastax.oss.driver.api.core.CqlSession;

@@ -1,12 +1,13 @@
 package edu.augusta.sccs.trivia.server;
 
 import edu.augusta.sccs.trivia.*;
-import edu.augusta.sccs.trivia.mysql.DbConfig2;
-import edu.augusta.sccs.trivia.mysql.QuestionDAO;
+import edu.augusta.sccs.trivia.questionsrepo.QuestionRepository;
+import edu.augusta.sccs.trivia.questionsrepo.ServerQuestion;
 import io.grpc.Server;
 import io.grpc.Grpc;
 import io.grpc.InsecureServerCredentials;
 import io.grpc.stub.StreamObserver;
+
 
 import java.io.IOException;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.logging.Logger;
 
 public class ServerEndpoint {
 
-    private static final Logger logger = Logger.getLogger(Server.class.getName());
+    private static final Logger logger = Logger.getLogger(ServerEndpoint.class.getName());
 
 
     private Server server;
@@ -37,7 +38,8 @@ public class ServerEndpoint {
                 try {
                     if (server != null) {
                         server.shutdown().awaitTermination(30, TimeUnit.SECONDS);
-                    }                } catch (InterruptedException e) {
+                    }
+                } catch (InterruptedException e) {
                     e.printStackTrace(System.err);
                 }
                 System.err.println("*** server shut down");
@@ -67,23 +69,24 @@ public class ServerEndpoint {
 
         @Override
         public void getQuestions(QuestionsRequest req, StreamObserver<QuestionsReply> responseObserver) {
+            QuestionRepository questionRepo = new QuestionRepository("questions", 9042, "datacenter1");
 
-            int difficulty = req.getDifficulty();
-            int numberOfQuestions = req.getNumberOfQuestions();
 
-            QuestionDAO questionDAO = new QuestionDAO(DbConfig2.getSessionFactory());
-            Processor processor= new Processor(questionDAO, null, null);
+            List<ServerQuestion> questions = questionRepo.getQuestionsByDifficulty(req.getDifficulty(), req.getNumberOfQuestions());
 
-            List<Question> questions = processor.getQuestionsByDifficulty(difficulty, numberOfQuestions);
+
             QuestionsReply.Builder builder = QuestionsReply.newBuilder();
-
-            for(Question q: questions) {
-                builder.addQuestions(q);
+            for(ServerQuestion q: questions) {
+                builder.addQuestions(QuestionRepository.convertToQuestion(q));
             }
-            QuestionsReply reply2 = builder.build();
 
-            responseObserver.onNext(reply2);
+            QuestionsReply reply = builder.build();
+
+            responseObserver.onNext(reply);
             responseObserver.onCompleted();
         }
+
     }
 }
+
+
