@@ -5,7 +5,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
-import java.time.Instant;
 import java.util.UUID;
 
 @Entity
@@ -45,12 +44,5 @@ public class DbPlayer {
         this.lastDifficulty = (byte) lastDifficulty;
     }
 
-    // TODO REMOVE FUNCTION BEFORE RELEASE
-    public static DbPlayer createPlayer(String username, int lastDifficulty) {
-        DbPlayer player = new DbPlayer();
-        player.uuid = UUID.randomUUID().toString();
-        player.username = username;
-        player.lastDifficulty = (byte) lastDifficulty;
-        return player;
-    }
+
 }

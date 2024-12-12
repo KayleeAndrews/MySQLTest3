@@ -9,7 +9,6 @@ public abstract class AbstractDbConfig {
     public AbstractDbConfig(String configFile) {
         Configuration hibernateConfig = new Configuration();
         hibernateConfig.configure(configFile);
-        hibernateConfig.addAnnotatedClass(DbQuestion.class);
         hibernateConfig.addAnnotatedClass(DbPlayer.class);
         hibernateConfig.addAnnotatedClass(DbQuestionResponse.class);
 

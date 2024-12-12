@@ -1,7 +1,6 @@
 package edu.augusta.sccs.trivia.mysql;
 
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 public class DbConfig2 extends AbstractDbConfig{
 

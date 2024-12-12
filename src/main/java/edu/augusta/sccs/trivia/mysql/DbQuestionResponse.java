@@ -17,10 +17,7 @@ public class DbQuestionResponse {
             foreignKey = @ForeignKey(name="PlayerToQuestionResponseForeignKey"))
     private DbPlayer player;
 
-    @ManyToOne(optional=false)
-    @JoinColumn(name = "questionUuid", referencedColumnName = "uuid",  // a reference to a non-PK column
-            foreignKey = @ForeignKey(name="QuestionTOQuestionResponseForeignKey"))
-    private DbQuestion question;
+    private String questionUuid;
 
     @NotNull
     private boolean correct;
@@ -44,12 +41,12 @@ public class DbQuestionResponse {
         this.player = player;
     }
 
-    public DbQuestion getQuestion() {
-        return question;
+    public UUID getQuestionUUID() {
+        return UUID.fromString(questionUuid);
     }
 
-    public void setQuestion(DbQuestion question) {
-        this.question = question;
+    public void setQuestionUUID(UUID question) {
+        this.questionUuid = question.toString();
     }
 
     @NotNull
@@ -69,14 +66,4 @@ public class DbQuestionResponse {
         this.timestamp = timestamp;
     }
 
-    // TODO REMOVE FUNCTION BEFORE RELEASE
-    public static DbQuestionResponse createResponse(DbPlayer player, DbQuestion question, boolean correct) {
-        DbQuestionResponse dbResponse = new DbQuestionResponse();
-        dbResponse.uuid = UUID.randomUUID().toString();
-        dbResponse.player = player;
-        dbResponse.question = question;
-        dbResponse.correct = correct;
-        dbResponse.timestamp = Instant.now();
-        return dbResponse;
-    }
 }
