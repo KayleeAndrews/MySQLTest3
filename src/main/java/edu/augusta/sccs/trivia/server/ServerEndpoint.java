@@ -22,15 +22,18 @@ import java.util.logging.Logger;
 public class ServerEndpoint {
 
     private static final Logger logger = Logger.getLogger(ServerEndpoint.class.getName());
-
-
     private Server server;
 
     private void start() throws IOException {
         /* The port on which the server should run */
         int port = 50051;
+
+        QuestionRepository questionRepo = new QuestionRepository("questions", 9042, "datacenter1");
+        TriviaRepository triviaRepository = new TriviaRepository();
+
         server = Grpc.newServerBuilderForPort(port, InsecureServerCredentials.create())
-                .addService(new TriviaQuestionImpl())
+                // add our repositories to the service
+                .addService(new TriviaQuestionImpl(questionRepo, triviaRepository))
                 .build()
                 .start();
         logger.info("Server started, listening on " + port);
@@ -71,10 +74,18 @@ public class ServerEndpoint {
     }
 
     static class TriviaQuestionImpl extends TriviaQuestionsGrpc.TriviaQuestionsImplBase {
+        // Repository instance for database operations
+        private final QuestionRepository questionRepo;
+        private final TriviaRepository triviaRepository;
+
+        // Constructor injection of repositories
+    public TriviaQuestionImpl(QuestionRepository questionRepo, TriviaRepository triviaRepository) {
+                this.questionRepo = questionRepo;
+                this.triviaRepository = triviaRepository;
+            }
 
         @Override
         public void getQuestions(QuestionsRequest req, StreamObserver<QuestionsReply> responseObserver) {
-            QuestionRepository questionRepo = new QuestionRepository("questions", 9042, "datacenter1");
 
             try {
                 // Get questions from Cassandra matching request criteria
@@ -99,8 +110,6 @@ public class ServerEndpoint {
 
         @Override
         public void submitAnswer(AnswerSubmission request, StreamObserver<AnswerResponse> responseObserver) {
-            TriviaRepository triviaRepository = new TriviaRepository();
-            QuestionRepository questionRepo = new QuestionRepository("questions", 9042, "datacenter1");
 
             try {
                 // Get player from database matching given player uuid
@@ -138,7 +147,6 @@ public class ServerEndpoint {
 
         @Override
         public void getPlayer(PlayerRequest request,  StreamObserver<PlayerReply> responseObserver) {
-            TriviaRepository triviaRepository = new TriviaRepository();
             // Get player from database matching given player uuid
             DbPlayer dbPlayer = triviaRepository.findPlayerByUuid(request.getUuid());
 
@@ -166,7 +174,6 @@ public class ServerEndpoint {
 
         @Override
         public void registerPlayer(PlayerRegistrationRequest request, StreamObserver<PlayerReply> responseObserver) {
-            TriviaRepository triviaRepository = new TriviaRepository();
 
             try {
                 // Extract player details from the request
