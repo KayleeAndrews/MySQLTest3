@@ -12,6 +12,9 @@ package trivia;
 service TriviaQuestions {
   // Provides questions
   rpc GetQuestions (QuestionsRequest) returns (QuestionsReply) {}
+  rpc SubmitAnswer (AnswerSubmission) returns (AnswerResponse) {}
+  rpc GetPlayer (PlayerRequest) returns (PlayerReply) {}
+  rpc registerPlayer(PlayerRegistrationRequest) returns (PlayerReply);
 }
 
 // The request message containing the user's name.
@@ -20,10 +23,45 @@ message QuestionsRequest {
   int32 difficulty = 2; // the difficulty level of the questions
 }
 
-// The response message containing the greetings
+// The reply message containing the number of questions and difficulty requested
 message QuestionsReply {
   repeated Question questions = 1; // the set of questions
 }
+
+// a players answer
+message AnswerSubmission {
+  string player_id = 1; // universal unique identifier for the player
+  repeated QuestionAnswer answers = 2;
+}
+
+// Provides offline answers
+message QuestionAnswer {
+  string questionUuid = 1;
+  string answer = 2;
+  int64 timestampMillis = 3;
+}
+
+//todo: what needs to be in the servers response?????
+message AnswerResponse {
+  bool success = 1; //
+  string error_message = 2; //
+}
+
+// The request message containing the user uuid
+message PlayerRequest {
+  string uuid = 1;
+}
+
+// The reply message containing the player
+message PlayerReply {
+  Player player = 1;
+}
+
+// Player Registration Request
+message PlayerRegistrationRequest {
+  Player player = 1; // Player details for registration
+}
+
 
 // a trivia question
 message Question {
@@ -33,6 +71,13 @@ message Question {
   string answer = 4; // the correct answer to the question
   AnswerType answerType = 5; // the type of answer is needed to parse answer
   repeated string choices = 6; // multiple choice options
+}
+
+// a trivia player
+message Player {
+  string uuid =1; // universal unique identifier for the question
+  string username = 2; // the username of the player
+  int32 lastDifficulty = 3; // the difficulty of the last question
 }
 
 // The type of answer required for a question

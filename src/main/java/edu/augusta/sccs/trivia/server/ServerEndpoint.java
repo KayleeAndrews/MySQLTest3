@@ -1,6 +1,9 @@
 package edu.augusta.sccs.trivia.server;
 
 import edu.augusta.sccs.trivia.*;
+import edu.augusta.sccs.trivia.mysql.DbPlayer;
+import edu.augusta.sccs.trivia.mysql.DbQuestionResponse;
+import edu.augusta.sccs.trivia.mysql.TriviaRepository;
 import edu.augusta.sccs.trivia.questionsrepo.QuestionRepository;
 import edu.augusta.sccs.trivia.questionsrepo.ServerQuestion;
 import io.grpc.Server;
@@ -10,7 +13,9 @@ import io.grpc.stub.StreamObserver;
 
 
 import java.io.IOException;
+import java.time.Instant;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
@@ -25,7 +30,7 @@ public class ServerEndpoint {
         /* The port on which the server should run */
         int port = 50051;
         server = Grpc.newServerBuilderForPort(port, InsecureServerCredentials.create())
-                .addService(new TrivaQuestionImpl())
+                .addService(new TriviaQuestionImpl())
                 .build()
                 .start();
         logger.info("Server started, listening on " + port);
@@ -65,27 +70,138 @@ public class ServerEndpoint {
         server.blockUntilShutdown();
     }
 
-    static class TrivaQuestionImpl extends TriviaQuestionsGrpc.TriviaQuestionsImplBase {
+    static class TriviaQuestionImpl extends TriviaQuestionsGrpc.TriviaQuestionsImplBase {
 
         @Override
         public void getQuestions(QuestionsRequest req, StreamObserver<QuestionsReply> responseObserver) {
             QuestionRepository questionRepo = new QuestionRepository("questions", 9042, "datacenter1");
 
+            try {
+                // Get questions from Cassandra matching request criteria
+                List<ServerQuestion> questions = questionRepo.getQuestionsByDifficulty(req.getDifficulty(), req.getNumberOfQuestions());
 
-            List<ServerQuestion> questions = questionRepo.getQuestionsByDifficulty(req.getDifficulty(), req.getNumberOfQuestions());
+                // Convert Cassandra questions to gRPC format
+                QuestionsReply.Builder builder = QuestionsReply.newBuilder();
+                for (ServerQuestion q : questions) {
+                    builder.addQuestions(QuestionRepository.convertToQuestion(q));
+                }
 
+                QuestionsReply reply = builder.build();
 
-            QuestionsReply.Builder builder = QuestionsReply.newBuilder();
-            for(ServerQuestion q: questions) {
-                builder.addQuestions(QuestionRepository.convertToQuestion(q));
+                responseObserver.onNext(reply);
+                responseObserver.onCompleted();
+            } catch (Exception e) {
+                // Handle unexpected errors
+                logger.severe("Error retrieving questions: " + e.getMessage());
+                responseObserver.onError(e);
             }
-
-            QuestionsReply reply = builder.build();
-
-            responseObserver.onNext(reply);
-            responseObserver.onCompleted();
         }
 
+        @Override
+        public void submitAnswer(AnswerSubmission request, StreamObserver<AnswerResponse> responseObserver) {
+            TriviaRepository triviaRepository = new TriviaRepository();
+            QuestionRepository questionRepo = new QuestionRepository("questions", 9042, "datacenter1");
+
+            try {
+                // Get player from database matching given player uuid
+                DbPlayer player = triviaRepository.findPlayerByUuid(request.getPlayerId());
+
+                // retrieve question for each answer submitted
+                for (QuestionAnswer answer : request.getAnswersList()) {
+                    ServerQuestion question = questionRepo.getQuestionById(UUID.fromString(answer.getQuestionUuid()));
+
+                    // Create DbQuestionResponse for each answer in list
+                    DbQuestionResponse response = new DbQuestionResponse();
+                    response.setUuid(UUID.randomUUID());
+                    response.setPlayer(player);
+                    response.setQuestionUUID(UUID.fromString(answer.getQuestionUuid()));
+                    // validate answer
+                    response.setCorrect(question.getAnswer().equalsIgnoreCase(answer.getAnswer().trim()));
+                    response.setTimestamp(Instant.ofEpochMilli(answer.getTimestampMillis()));
+
+                    // persist question response
+                    triviaRepository.save(response);
+                }
+
+                // Send response back to client
+                AnswerResponse reply = AnswerResponse.newBuilder()
+                        .setSuccess(true)
+                        .build();
+                responseObserver.onNext(reply);
+                responseObserver.onCompleted();
+            } catch (Exception e) {
+                // Handle unexpected errors
+                logger.severe("Error processing answer: " + e.getMessage());
+                responseObserver.onError(e);
+            }
+        }
+
+        @Override
+        public void getPlayer(PlayerRequest request,  StreamObserver<PlayerReply> responseObserver) {
+            TriviaRepository triviaRepository = new TriviaRepository();
+            // Get player from database matching given player uuid
+            DbPlayer dbPlayer = triviaRepository.findPlayerByUuid(request.getUuid());
+
+            try {
+                // Convert database Player to gRPC format
+                PlayerReply.Builder builder = PlayerReply.newBuilder();
+                Player player = Player.newBuilder()
+                        .setUuid(dbPlayer.getUuid().toString())
+                        .setUsername(dbPlayer.getUsername())
+                        .setLastDifficulty(dbPlayer.getLastDifficulty())
+                        .build();
+
+                builder.setPlayer(player);
+
+                // Send response back to client
+                PlayerReply reply = builder.build();
+                responseObserver.onNext(reply);
+                responseObserver.onCompleted();
+            }catch (Exception e) {
+                // Handle unexpected errors
+                logger.severe("Player not found: " + e.getMessage());
+                responseObserver.onError(e);
+            }
+        }
+
+        @Override
+        public void registerPlayer(PlayerRegistrationRequest request, StreamObserver<PlayerReply> responseObserver) {
+            TriviaRepository triviaRepository = new TriviaRepository();
+
+            try {
+                // Extract player details from the request
+                Player player = request.getPlayer();
+
+                // Create a new DbPlayer for the database
+                DbPlayer dbPlayer = new DbPlayer();
+                dbPlayer.setUuid(UUID.randomUUID()); // Generate a unique UUID
+                dbPlayer.setUsername(player.getUsername());
+                dbPlayer.setLastDifficulty(player.getLastDifficulty());
+
+                // Save the new player to the database
+                triviaRepository.save(dbPlayer);
+
+                // Build the gRPC Player object to return in the response
+                Player grpcPlayer = Player.newBuilder()
+                        .setUuid(dbPlayer.getUuid().toString())
+                        .setUsername(dbPlayer.getUsername())
+                        .setLastDifficulty(dbPlayer.getLastDifficulty())
+                        .build();
+
+                // Build and send the PlayerReply response
+                PlayerReply reply = PlayerReply.newBuilder()
+                        .setPlayer(grpcPlayer)
+                        .build();
+
+                responseObserver.onNext(reply);
+                responseObserver.onCompleted();
+
+            } catch (Exception e) {
+                // Handle unexpected errors
+                logger.severe("Error registering player: " + e.getMessage());
+                responseObserver.onError(e);
+            }
+        }
     }
 }
 
