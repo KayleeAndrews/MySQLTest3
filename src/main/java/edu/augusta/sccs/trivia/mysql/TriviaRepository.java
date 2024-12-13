@@ -53,6 +53,7 @@ public class TriviaRepository implements PlayerDao, QuestionResponseDao {
     public void save(DbPlayer player) {
         Session session = selectSessionFactoryByUuid(player.getUuid()).openSession();
         session.beginTransaction();
+
         session.persist(player);
 
         session.getTransaction().commit();

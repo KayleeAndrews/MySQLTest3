@@ -1,0 +1,43 @@
+
+
+services:
+
+  questions:
+    image: cassandra:4.1
+    ports:
+        - 9042:9042   
+    deploy:
+        replicas: 1
+    volumes:
+        -  mptwo-questions-vol:/var/lib/cassandra
+    environment:
+        - CASSANDRA_USER=admin
+        - CASSANDRA_PASSWORD=admin
+
+  mysql-1:
+    image: mysql:9.1
+    deploy:
+        replicas: 1
+    ports:
+        - 3301:3306
+    volumes:
+        - mptwo-db-vol-1:/var/lib/mysql 
+    environment:
+        - MYSQL_ROOT_PASSWORD=mysqlPassword
+
+  mysql-2:
+    image: mysql:9.1
+    deploy:
+        replicas: 1
+    ports:
+        - 3302:3306
+    volumes:
+        - mptwo-db-vol-2:/var/lib/mysql
+    environment:
+        - MYSQL_ROOT_PASSWORD=mysqlPassword      
+
+volumes:
+  mptwo-db-vol-1:
+  mptwo-db-vol-2:
+  mptwo-questions-vol:
+  

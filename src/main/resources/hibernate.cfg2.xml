@@ -6,7 +6,7 @@
     <session-factory>
 
         <!-- Set URL -->
-        <property name = "hibernate.connection.url">jdbc:mysql://localhost:3302/trivia</property>
+        <property name = "hibernate.connection.url">jdbc:mysql://mysql-1:3306/trivia</property>
 
         <!-- Set User Name -->
         <property name = "hibernate.connection.username">dbuser</property>
