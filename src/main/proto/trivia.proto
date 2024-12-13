@@ -41,7 +41,6 @@ message QuestionAnswer {
   int64 timestampMillis = 3;
 }
 
-//todo: what needs to be in the servers response?????
 message AnswerResponse {
   bool success = 1; //
   string error_message = 2; //

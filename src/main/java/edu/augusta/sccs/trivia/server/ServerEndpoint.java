@@ -28,6 +28,12 @@ public class ServerEndpoint {
         /* The port on which the server should run */
         int port = 50051;
 
+        /*
+        QuestionRepository questionRepo = new QuestionRepository("questions", 9042, "datacenter1");
+        CHANGE: "questions" to "localhost" if running Java on your machine and use "external-db-test.yml"
+        NOTE: it appears that data center will always default to "datacenter1" if not specified so there should be little reason to change it
+        */
+
         QuestionRepository questionRepo = new QuestionRepository("questions", 9042, "datacenter1");
         TriviaRepository triviaRepository = new TriviaRepository();
 
