@@ -134,8 +134,12 @@ public class ServerEndpoint {
                     response.setCorrect(question.getAnswer().equalsIgnoreCase(answer.getAnswer().trim()));
                     response.setTimestamp(Instant.ofEpochMilli(answer.getTimestampMillis()));
 
+                    if(player.getLastDifficulty() != question.getDifficulty())
+                        player.setLastDifficulty(question.getDifficulty());
+
                     // persist question response
                     triviaRepository.save(response);
+                    triviaRepository.save(player);
                 }
 
                 // Send response back to client
