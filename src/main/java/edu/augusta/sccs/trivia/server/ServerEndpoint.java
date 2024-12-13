@@ -120,9 +120,21 @@ public class ServerEndpoint {
             try {
                 // Get player from database matching given player uuid
                 DbPlayer player = triviaRepository.findPlayerByUuid(request.getPlayerId());
+                List<QuestionAnswer> answers = request.getAnswersList();
+
+                // Update player difficulty if needed (using last question)
+                if (!answers.isEmpty()) {
+                    QuestionAnswer lastAnswer = answers.get(answers.size() - 1);
+                    ServerQuestion lastQuestion = questionRepo.getQuestionById(
+                            UUID.fromString(lastAnswer.getQuestionUuid()));
+                    if (player.getLastDifficulty() != lastQuestion.getDifficulty()) {
+                        player.setLastDifficulty(lastQuestion.getDifficulty());
+                        triviaRepository.save(player);
+                    }
+                }
 
                 // retrieve question for each answer submitted
-                for (QuestionAnswer answer : request.getAnswersList()) {
+                for (QuestionAnswer answer : answers) {
                     ServerQuestion question = questionRepo.getQuestionById(UUID.fromString(answer.getQuestionUuid()));
 
                     // Create DbQuestionResponse for each answer in list
@@ -133,15 +145,6 @@ public class ServerEndpoint {
                     // validate answer
                     response.setCorrect(question.getAnswer().equalsIgnoreCase(answer.getAnswer().trim()));
                     response.setTimestamp(Instant.ofEpochMilli(answer.getTimestampMillis()));
-
-                    // set player difficulty to difficulty of last question
-                    if(player.getLastDifficulty() != question.getDifficulty()) {
-                        player.setLastDifficulty(question.getDifficulty());
-                        // persist player if updated
-                        triviaRepository.save(player);
-                    }
-                    // persist question response
-                    triviaRepository.save(response);
                 }
 
                 // Send response back to client
